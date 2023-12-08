@@ -1,4 +1,4 @@
-# Clasificador Gaussiano Ingenuo (Naive Bayes Classifier) 📸
+# Clasificador Gaussiano Ingenuo (Naive Bayes Classifier) 📸📊
 
 En el transcurso de este proyecto, se llevará a cabo la implementación de un clasificador Gaussiano ingenuo. El propósito central de esta implementación es alcanzar el reconocimiento efectivo de objetos. El clasificador Gaussiano ingenuo es un modelo probabilístico que asume independencia entre las características de los datos, haciendo que sea "ingenuo" en su enfoque, pero a menudo es utilizado con éxito en diversas tareas de clasificación. En este contexto, se busca emplear esta técnica para lograr la identificación y clasificación precisa de objetos en un conjunto de datos, aprovechando las propiedades estadísticas y de probabilidad que ofrece el modelo Gaussiano. 
 
