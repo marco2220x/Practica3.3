@@ -26,3 +26,31 @@ class NaiveBayesGaussiano:
             self.medias[i] = np.mean(datos_clase, axis=0)
             self.desviaciones[i] = np.std(datos_clase, axis=0)
             self.probabilidades_clases[i] = len(datos_clase) / len(y_numerico)
+            
+    def calcular_probabilidad(self, x, media, desviacion):
+        # Asegurar que la desviación estándar no sea cero
+        desviacion = max(desviacion, 1e-10)
+        exponente = np.exp(-((x - media) ** 2) / (2 * desviacion ** 2))
+        return (1 / (np.sqrt(2 * np.pi) * desviacion)) * exponente
+
+    def predict(self, X):
+        predicciones = []
+
+        for dato in X:
+            probabilidades = []
+
+            for i in range(len(self.medias)):
+                prob_clase = np.log(self.probabilidades_clases[i])
+
+                for j in range(len(dato)):
+                    # Corregir el manejo de casos donde la desviación estándar es cero
+                    prob_clase += np.log(self.calcular_probabilidad(dato[j], self.medias[i][j], self.desviaciones[i][j]))
+
+                probabilidades.append(prob_clase)
+
+            clase_predicha = np.argmax(probabilidades)
+            predicciones.append(clase_predicha)
+
+        # Utilizar inverse_transform para obtener las etiquetas originales
+        predicciones = self.label_encoder.inverse_transform(predicciones)
+        return np.array(predicciones)
